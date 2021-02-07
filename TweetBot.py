@@ -5,8 +5,13 @@ load_dotenv()
 import os
 import time
 from datetime import datetime
+from twilio.rest import Client
 
+def sid():
+    return os.environ.get("TWILIO_ACCOUNT_SID")
 
+def twilioAuth():
+    return os.environ.get("TWILIO_AUTH_TOKEN")
 
 def auth():
     return os.getenv("BEARER_TOKEN")
@@ -43,6 +48,10 @@ def connect_to_endpoint(url, headers, params):
 
 
 def main():
+    numbers_to_message = ['+0000000000'] #enter numbers here
+    account_sid = sid()
+    auth_token = twilioAuth()
+    client = Client(account_sid, auth_token)
     lastDate = datetime.strptime('2021-01-01 20:05:25.000', '%Y-%m-%d %H:%M:%S.%f')
     bearer_token = auth()
     url = create_url()
@@ -62,16 +71,29 @@ def main():
                     cryptoData = json.load(cryptoJsonFile)
                     for crypto in cryptoData['cryptos']:
                         if tweetContent.find(crypto['symbol'].lower()) != -1 or tweetContent.find(crypto['name'].lower()) != - 1 :
-                            print("crypto found: " + crypto['name'])
-                            print("in tweet: " + tweet['text'])
+                            cryptoMessage = "crypto found: " + crypto['name'] + " in Elon's tweet: " + tweet['text']
+                            print(cryptoMessage)
+                            for number in numbers_to_message:
+                                client.messages.create(
+                                    body=cryptoMessage,
+                                    from_='+18475503949',
+                                    to=number
+                                )
+
                             print("\n")
                 with open('stocks.json') as stocksJsonFile:
                     stockData = json.load(stocksJsonFile)
                     for stock in stockData['popular_stocks']:
+                        if tweetContent.find(" " + stock['name'].lower() + " ") != -1 : #or tweetContent.find(stock['name'].lower() + " ") != -1
+                            stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + tweet['text']
+                            print(stockMessage)
+                            for number in numbers_to_message:
+                                client.messages.create(
+                                    body=stockMessage,
+                                    from_='+18475503949',
+                                    to=number
+                                )
 
-                        if tweetContent.find(" " + stock['name'].lower()) != -1 or tweetContent.find(stock['name'].lower() + " ") != -1:
-                            print("stock found " + stock['name'])
-                            print("in tweet: " + tweet['text'])
                             print("\n")
         lastDate = datetime.strptime(tweets[0]['created_at'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
         print("Waiting 2 minutes")
