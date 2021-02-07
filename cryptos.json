@@ -6,7 +6,7 @@
         },
         {
             "symbol" : "ETH",
-            "name": "Bitcoin"
+            "name": "Etherium"
         },
         {
             "symbol" : "DOGE",
@@ -17,86 +17,8 @@
             "name": "XRP"
         },
         {
-            "symbol" : "ADA",
-            "name": "Cardano"
-        }
-        ,
-        {
-            "symbol" : "Polkadot",
-            "name": "DOT"
-        },
-        {
-            "symbol" : "NEO",
-            "name": "Neo"
-        },
-        {
-            "symbol" : "CEL",
-            "name": "Celsius"
-        },
-        {
-            "symbol" : "NANO",
-            "name": "Nano"
-        },
-        {
-            "symbol" : "LINK",
-            "name": "Chainlink"
-        },
-        {
-            "symbol" : "DOGE",
-            "name": "Dogecoin"
-        },
-        {
-            "symbol" : "XMR",
-            "name": "Monero"
-        },
-        {
-            "symbol" : "USDT",
-            "name": "Tether"
-        },
-        {
             "symbol" : "LTC",
             "name": "Litecoin"
-        },
-        {
-            "symbol" : "DOGE",
-            "name": "Dogecoin"
-        },
-        {
-            "symbol" : "DOGE",
-            "name": "Dogecoin"
-        },
-        {
-            "symbol" : "BNB",
-            "name": "Binance Coin"
-        },
-        {
-            "symbol" : "XEM",
-            "name": "NEM"
-        },
-        {
-            "symbol" : "DOGE",
-            "name": "Dogecoin"
-        },
-        {
-            "symbol" : "TRX",
-            "name": "TRON"
-        },
-        {
-            "symbol" : "DASH",
-            "name": "Dash"
-        },
-        {
-            "symbol" : "ZEC",
-            "name": "Zcash"
-        },
-        {
-            "symbol" : "EOS",
-            "name": "EOS"
-        },
-        {
-            "symbol" : "VET",
-            "name": "VeChain"
         }
-
     ]
 }
