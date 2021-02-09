@@ -18,7 +18,13 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 ```python
 numbers_to_message = ['+000000000']
 ```
-11. Replace line 110, 127, amd 151 with Twilio number to send messages from. 
+11. Replace line 110, 127, and 151 with Twilio number to send messages from. 
 ```python
 from_='+000000000'
 ```
+
+## Examples
+<img src="public/img/doge-image.jpeg" width="600">
+<img src="public/img/gamestop.png" width="600">
+<img src="public/img/dogecoin.png" width="600">
+<img src="public/img/twilio-texts.PNG" width="600">

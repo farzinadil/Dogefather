@@ -108,7 +108,7 @@ def main():
                                 for number in numbers_to_message:
                                     client.messages.create(
                                         body=cryptoMessage,
-                                        from_='+00000000',
+                                        from_='+000000000',
                                         to=number
                                     )
 
@@ -151,7 +151,7 @@ def main():
                                     for number in numbers_to_message:
                                         client.messages.create(
                                             body=dogeMessage,
-                                            from_='+000000000',
+                                            from_='+00000000',
                                             to=number
                                         )
                                         
