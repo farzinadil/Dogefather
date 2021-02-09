@@ -3,7 +3,7 @@
 ## About
 This is a program that checks for new tweets from a Twitter user (Elon Musk by default) and checks if the tweets contain the name of popular stocks or cryptocurrencies. The program checks for tweets every 2 minutes. If the tweet contains text, it will scan the text for potential names of companies with commonly traded stocks or popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use ImageAI to locate images of Dogecoin or images of dogs. If the program finds images of dogecoin or text containing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API.
 
-## Installatin
+## Installation
 
 1. <code>pip install -U python-dotenv</code>
 2. <code>pip install pip install twilio</code>
@@ -24,7 +24,11 @@ from_='+000000000'
 ```
 
 ## Examples
+### Image Recognition
 <img src="public/img/doge-image.jpeg" width="600">
+### Find stock in tweet
 <img src="public/img/gamestop.png" width="600">
+### Find crypto in tweet
 <img src="public/img/dogecoin.png" width="600">
+### Send alerts 
 <img src="public/img/twilio-texts.PNG" width="600">
