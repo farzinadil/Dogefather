@@ -1,1 +1,6 @@
 .env
+venv/
+yolo.h5
+tweeted-image.jpg
+tweeted-image.jpg
+labeled-tweeted-image.jpg
