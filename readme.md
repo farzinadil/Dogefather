@@ -24,11 +24,11 @@ from_='+000000000'
 ```
 
 ## Examples
-### Image Recognition
+Image Recognition
 <img src="public/img/doge-image.jpeg" width="600">
-### Find stock in tweet
+Find stock in tweet
 <img src="public/img/gamestop.png" width="600">
-### Find crypto in tweet
+Find crypto in tweet
 <img src="public/img/dogecoin.png" width="600">
-### Send alerts 
+Send alerts 
 <img src="public/img/twilio-texts.PNG" width="600">
