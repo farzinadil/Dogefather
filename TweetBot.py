@@ -76,7 +76,7 @@ def main():
                             for number in numbers_to_message:
                                 client.messages.create(
                                     body=cryptoMessage,
-                                    from_='+18475503949',
+                                    from_='+000000000',
                                     to=number
                                 )
 
@@ -90,7 +90,7 @@ def main():
                             for number in numbers_to_message:
                                 client.messages.create(
                                     body=stockMessage,
-                                    from_='+18475503949',
+                                    from_='+000000000',
                                     to=number
                                 )
 
