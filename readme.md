@@ -7,7 +7,7 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 
 1. <code>pip install requests</code>
 2. <code>pip install -U python-dotenv</code>
-3. <code>pip install pip install twilio</code>
+3. <code>pip install twilio</code>
 4. <code>pip install numpy</code>
 5. <code>pip install tensorflow</code>
 6. <code>pip install keras</code>
