@@ -25,7 +25,7 @@ def auth():
 
 # funtion that returns witter timeline url 
 def create_url():
-    user_id = 44196397 # elon: 44196397 # test account: 1358539990670536705
+    user_id = 1358539990670536705 # elon: 44196397 # test account: 1358539990670536705
     return "https://api.twitter.com/2/users/{}/tweets".format(user_id)
 
 #returns tweet parameters for twitter api 
@@ -83,6 +83,8 @@ def main():
     detector.setModelPath(os.path.join(current_directory, "yolo.h5"))
     detector.loadModel()
 
+    time.sleep(5)
+
     #constant loop that runs every 2 minutes
     while True:
         json_response = connect_to_endpoint(url, headers, params) #get latest tweets
@@ -106,11 +108,13 @@ def main():
                                 print(cryptoMessage)
                                #send SMS with Twilio
                                 for number in numbers_to_message:
+                                    ''''
                                     client.messages.create(
                                         body=cryptoMessage,
                                         from_='+000000000',
                                         to=number
                                     )
+                                    '''
 
                                 print("\n")
 
@@ -118,16 +122,17 @@ def main():
                     stockData = json.load(stocksJsonFile) #get stockData from stocks.json file
                     for stock in stockData['popular_stocks']: #iterate through each stock
                         for word in splitTweetContent: #iterate through each word in the tweet
-                            if (similar(word, stock['name'].lower() ) > 0.75 ): #check if word is similar to stock name
+                            if similar(word, stock['name'].lower()) > 0.75: #check if word is similar to stock name
                                 stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + tweet['text'] #generate stock found message
                                 print(stockMessage)
                                 #send SMS with Twilio
                                 for number in numbers_to_message:
+                                    '''
                                     client.messages.create(
                                         body=stockMessage,
-                                        from_='+00000000',
+                                        from_='+000000000',
                                         to=number
-                                    )
+                                    )'''
                                 print("\n")
                                
                 # check tweets for images
@@ -137,7 +142,7 @@ def main():
                         requestTweet = requests.get(requestURL, headers={"Authorization": "Bearer {}".format(bearer_token)})
                         for media in requestTweet.json()['includes']['media']: #iterate through media array of tweet
                             imageURL = media['url']
-                            urllib.request.urlretrieve(imageURL,"tweeted-image.jpg") #retrieve and download image from media 
+                            urllib.request.urlretrieve(imageURL,"tweeted-image.jpg") #retrieve and download image from media
                             time.sleep(5)
                             #use imageAI to detect objects in image
                             detections = detector.detectObjectsFromImage(
@@ -149,12 +154,13 @@ def main():
                                     print(dogeMessage)
                                     #send SMS with Twilio
                                     for number in numbers_to_message:
+                                        '''
                                         client.messages.create(
                                             body=dogeMessage,
-                                            from_='+00000000',
+                                            from_='+000000000',
                                             to=number
                                         )
-                                        
+                                        '''
                 except:
                     print("error")
 

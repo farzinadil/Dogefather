@@ -5,16 +5,22 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 
 ## Installation
 
-1. <code>pip install -U python-dotenv</code>
-2. <code>pip install pip install twilio</code>
-3. <code>pip install numpy</code>
-4. <code>pip install tensorflow</code>
-5. <code>pip install keras</code>
-6. <code>pip install opencv-python</code>
-7. <code>pip install imageai --upgrade</code>
-8. Create a .env file add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
-9. Add the Twilio account sid and Twilio auth token to .env file as shown in the .env.example file
-10. Replace line 67 with an array of phone numbers to SMS when stocks or cryptos are found in tweets.
+1. <code>pip install requests</code>
+2. <code>pip install -U python-dotenv</code>
+3. <code>pip install pip install twilio</code>
+4. <code>pip install numpy</code>
+5. <code>pip install tensorflow</code>
+6. <code>pip install keras</code>
+7. <code>pip install pillow</code>
+8. <code>pip install scipy</code>
+9. <code>pip install h5py</code>
+10. <code>pip install opencv-python</code>
+11. <code>pip install matplotlib</code>
+12. <code>pip install keras-resnet</code>
+13. <code>pip install imageai --upgrade</code>
+14. Create a .env file add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
+15. Add the Twilio account sid and Twilio auth token to .env file as shown in the .env.example file
+16. Replace line 67 with an array of phone numbers to SMS when stocks or cryptos are found in tweets.
 ```python
 numbers_to_message = ['+000000000']
 ```
