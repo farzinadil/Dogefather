@@ -32,3 +32,7 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 
 ### Send alerts 
 <img src="public/img/twilio-texts.PNG" width="600">
+
+## What's Next
+1. Getting text from tweeted images to check for names of stocks or cryptocurrencies
+2. Detecting images of cryptocurrency symbols in tweeted images
