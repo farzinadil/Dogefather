@@ -13,7 +13,7 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 ### Instructions
 1. Clone repository
 2. <code>cd DogeCEO</code>
-3. <code>pip install -r requirements.txt</code>
+3. <code>pip3 install -r requirements.txt</code>
 4. Download yolo.h5 from [ImageAI documentation](https://imageai.readthedocs.io/en/latest/detection/) to the DogeCEO folder
 5. Create a .env file add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
 6. Add the Twilio account sid and Twilio auth token to .env file as shown in the .env.example file
