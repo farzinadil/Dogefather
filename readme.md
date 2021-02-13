@@ -1,7 +1,7 @@
 # DogeCEO
 
 ## About
-This is a program that checks for new tweets from a Twitter user (Elon Musk by default) and checks if the tweets contain the name of popular stocks or cryptocurrencies. The program checks for tweets every 2 minutes. If the tweet contains text, it will scan the text for potential names of companies with commonly traded stocks or popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use ImageAI to locate images of Dogecoin or images of dogs. If the program finds images of dogecoin or text containing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API.
+This is a program that checks for new tweets from a from Elon Musk and checks if the tweets contain the name of popular stocks or cryptocurrencies. The program checks for tweets every 2 minutes. If the tweet contains text, it will scan the text for potential names of companies with commonly traded stocks or popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use ImageAI to locate images of Dogecoin or images of dogs. If the program finds images of dogecoin or text containing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API.
 
 ## Installation
 
