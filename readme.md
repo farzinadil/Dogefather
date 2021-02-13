@@ -5,29 +5,20 @@ This is a program that checks for new tweets from a Twitter user (Elon Musk by d
 
 ## Installation
 
-1. <code>pip install requests</code>
-2. <code>pip install -U python-dotenv</code>
-3. <code>pip install twilio</code>
-4. <code>pip install numpy</code>
-5. <code>pip install tensorflow</code>
-6. <code>pip install keras</code>
-7. <code>pip install pillow</code>
-8. <code>pip install scipy</code>
-9. <code>pip install h5py</code>
-10. <code>pip install opencv-python</code>
-11. <code>pip install matplotlib</code>
-12. <code>pip install keras-resnet</code>
-13. <code>pip install imageai --upgrade</code>
-14. Create a .env file add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
-15. Add the Twilio account sid and Twilio auth token to .env file as shown in the .env.example file
-16. Replace line 67 with an array of phone numbers to SMS when stocks or cryptos are found in tweets.
-```python
-numbers_to_message = ['+000000000']
-```
-11. Replace line 110, 127, and 151 with Twilio number to send messages from. 
-```python
-from_='+000000000'
-```
+### Requiremmts
+1. Python 3.8
+2. Twitter developer account
+3. Twilio account (trial account is fine)
+
+### Instructions
+1. Clone repository
+2. <code>cd DogeCEO</code>
+3. <code>pip install -r requirements.txt</code>
+4. Download yolo.h5 from [ImageAI documentation](https://imageai.readthedocs.io/en/latest/detection/) to the DogeCEO folder
+5. Create a .env file add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
+6. Add the Twilio account sid and Twilio auth token to .env file as shown in the .env.example file
+7. Add the your phone number with +1 (ex: '+1800XXXXXXX') and your Twilio phone number in the same format as shown in .env.example
+7. <code>python3 TweetBot.py</code>
 
 ## Examples
 ### Image Recognition

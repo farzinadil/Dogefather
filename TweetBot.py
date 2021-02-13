@@ -64,10 +64,11 @@ def main():
     lastDate = datetime.strptime('2021-01-01 20:05:25.000', '%Y-%m-%d %H:%M:%S.%f')
 
     #twilio setup
-    numbers_to_message = ['+000000000'] #enter numbers here
     account_sid = sid()
     auth_token = twilioAuth()
     client = Client(account_sid, auth_token)
+    phone_number = os.getenv("PHONE_NUMBER")
+    twilio_phone_number = os.getenv("TWILIO_PHONE_NUMBER")
 
 
     #twitter setup
@@ -107,15 +108,11 @@ def main():
                                 cryptoMessage = "crypto found: " + crypto['name'] + " in Elon's tweet: " + tweet['text'] #generate crypto found message
                                 print(cryptoMessage)
                                #send SMS with Twilio
-                                for number in numbers_to_message:
-                                    ''''
-                                    client.messages.create(
-                                        body=cryptoMessage,
-                                        from_='+000000000',
-                                        to=number
-                                    )
-                                    '''
-
+                                client.messages.create(
+                                    body=cryptoMessage,
+                                    from_=twilio_phone_number,
+                                    to=phone_number
+                                )
                                 print("\n")
 
                 with open('stocks.json') as stocksJsonFile:
@@ -126,13 +123,11 @@ def main():
                                 stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + tweet['text'] #generate stock found message
                                 print(stockMessage)
                                 #send SMS with Twilio
-                                for number in numbers_to_message:
-                                    '''
-                                    client.messages.create(
-                                        body=stockMessage,
-                                        from_='+000000000',
-                                        to=number
-                                    )'''
+                                client.messages.create(
+                                    body=cryptoMessage,
+                                    from_=twilio_phone_number,
+                                    to=phone_number
+                                )
                                 print("\n")
                                
                 # check tweets for images
@@ -153,14 +148,11 @@ def main():
                                     dogeMessage = "found dog in image: " + imageURL
                                     print(dogeMessage)
                                     #send SMS with Twilio
-                                    for number in numbers_to_message:
-                                        '''
-                                        client.messages.create(
-                                            body=dogeMessage,
-                                            from_='+000000000',
-                                            to=number
-                                        )
-                                        '''
+                                    client.messages.create(
+                                    body=cryptoMessage,
+                                    from_=twilio_phone_number,
+                                    to=phone_number
+                                    )
                 except:
                     print("error")
 
