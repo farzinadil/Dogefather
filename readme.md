@@ -3,6 +3,9 @@
 ## About
 This is a program that checks for new tweets from Elon Musk and checks if the tweets contain the name of popular stocks or cryptocurrencies. If the tweet contains text, it will scan the text for potential names of companies with commonly traded stocks or popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use ImageAI to locate images of Dogecoin or images of dogs. If the program finds images of dogecoin or text containing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API. The program checks for tweets every 2 minutes. 
 
+## Update
+Image recognition code is currently commented out due to some issues from changes to ImageAi. Working on alternate solution. 
+
 ## Installation
 
 ### Requiremmts
