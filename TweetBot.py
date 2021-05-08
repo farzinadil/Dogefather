@@ -7,7 +7,6 @@ import time
 from datetime import datetime
 from twilio.rest import Client
 import urllib.request
-#from imageai.Detection import ObjectDetection
 from difflib import SequenceMatcher
 
 
@@ -25,7 +24,7 @@ def auth():
 
 # funtion that returns witter timeline url 
 def create_url():
-    user_id = 44196397 # user_id of Elon's account: 44196397  ( user_id of test account @farzin03167666 : 1358539990670536705 )
+    user_id = 1358539990670536705 # user_id of Elon's account: 44196397  ( user_id of test account @farzin03167666 : 1358539990670536705 )
     return "https://api.twitter.com/2/users/{}/tweets".format(user_id)
 
 #returns tweet parameters for twitter api 
@@ -56,10 +55,11 @@ def connect_to_endpoint(url, headers, params):
         )
     return response.json()
 
-# function that return similarity index of 2 strings
+# return similarity index of 2 strings
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
+# send a sms with 
 def sms(message):
     # twilio setup
     account_sid = sid()
@@ -73,6 +73,39 @@ def sms(message):
         to=phone_number
     )
 
+# use Google Vision AI to annotate image
+def imageRecognition(url):
+    visionAI_request_body = {
+        "requests": [
+        {
+            "image": {
+                "source": {
+                "imageUri": ""
+                }
+            },
+            "features": [
+            {
+                "type": "LABEL_DETECTION",
+                "maxResults": 5
+            },
+            {
+                "type": "LOGO_DETECTION",
+                "maxResults": 5
+            },
+            {
+                "type": "TEXT_DETECTION",
+                "maxResults": 5
+            }
+            ]
+        }
+    ]
+    }
+    visionAI_request_body["requests"][0]["image"]["source"]["imageUri"] = url
+    visionAI_request_json = json.dumps(visionAI_request_body)
+    visionAI_api_key = os.getenv("VISIONAI_API_KEY")
+    response = requests.post('https://vision.googleapis.com/v1/images:annotate?key=' + visionAI_api_key, data= visionAI_request_json)
+    return response.json()
+
 def main():
     lastDate = datetime.now()
 
@@ -81,16 +114,6 @@ def main():
     url = create_url()
     headers = create_headers(bearer_token)
     params = get_params()
-    '''
-    #ImageAi setup
-    current_directory = os.getcwd()
-    detector = ObjectDetection()
-    detector.setModelTypeAsYOLOv3()
-    detector.setModelPath(os.path.join(current_directory, "yolo.h5"))
-    detector.loadModel()
-    '''
-
-    time.sleep(5)
 
     #constant loop that runs every 2 minutes
     while True:
@@ -129,7 +152,6 @@ def main():
                                     sms(stockMessage)
                                     print("\n")
 
-                    '''
                     # check tweets for images
                     try:
                         if "attachments" in tweet: # if tweet potentially contains images
@@ -137,21 +159,79 @@ def main():
                             requestTweet = requests.get(requestURL, headers={"Authorization": "Bearer {}".format(bearer_token)})
                             for media in requestTweet.json()['includes']['media']: #iterate through media array of tweet
                                 imageURL = media['url']
-                                urllib.request.urlretrieve(imageURL,"tweeted-image.jpg") #retrieve and download image from media
-                                time.sleep(5)
-                                #use imageAI to detect objects in image
-                                detections = detector.detectObjectsFromImage(
-                                    input_image=os.path.join(current_directory, "tweeted-image.jpg"),
-                                    output_image_path=os.path.join(current_directory, "labeled-tweeted-image.jpg"))
-                                for eachObject in detections: #iterate through each object in image
-                                    if eachObject["name"] == "dog": #check if object is dog
-                                        dogeMessage = "found dog in image: " + imageURL
-                                        print(dogeMessage)
-                                        #send SMS with Twilio
-                                        sms(dogeMessage)
+                                annotatedImage = imageRecognition(imageURL) #get json responce from Google Vision AI
+                                try:
+                                    with open ('cryptos.json') as cryptoJsonFile:
+                                        cryptoData = json.load(cryptoJsonFile) #get cryptodata from cryptos.json file
+                                        for crypto in cryptoData['cryptos']: #iterate through each cryto
+                                            for objectDescription in annotatedImage['responses'][0]['labelAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], crypto['symbol'].lower() ) > 0.75 or similar(objectDescription['description'], crypto['name'].lower()) > 0.65 : #check if annotation is similar to crypto symbol or name
+                                                    cryptoMessage = "crypto found: " + crypto['name'] + " in Elon's tweet: " + imageURL #generate crypto found message
+                                                    print(cryptoMessage)
+                                                    #send SMS with Twilio
+                                                    sms(cryptoMessage)
+                                                    print("\n")
+                                    with open('stocks.json') as stocksJsonFile:
+                                        stockData = json.load(stocksJsonFile) #get stockData from stocks.json file
+                                        for stock in stockData['popular_stocks']: #iterate through each stock
+                                            for objectDescription in annotatedImage['responses'][0]['labelAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], stock['name'].lower()) > 0.75: #check if annotation is similar to stock name
+                                                    stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + imageURL #generate stock found message
+                                                    print(stockMessage)
+                                                    #send SMS with Twilio
+                                                    sms(stockMessage)
+                                                    print("\n")
+                                except:
+                                    pass
+                                try:
+                                    with open ('cryptos.json') as cryptoJsonFile:
+                                        cryptoData = json.load(cryptoJsonFile) #get cryptodata from cryptos.json file
+                                        for crypto in cryptoData['cryptos']: #iterate through each cryto
+                                            for objectDescription in annotatedImage['responses'][0]['logoAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], crypto['symbol'].lower() ) > 0.75 or similar(objectDescription['description'], crypto['name'].lower()) > 0.65 : #check if annotation is similar to crypto symbol or name
+                                                    cryptoMessage = "crypto found: " + crypto['name'] + " in Elon's tweet: " + imageURL #generate crypto found message
+                                                    print(cryptoMessage)
+                                                    #send SMS with Twilio
+                                                    sms(cryptoMessage)
+                                                    print("\n")
+                                    with open('stocks.json') as stocksJsonFile:
+                                        stockData = json.load(stocksJsonFile) #get stockData from stocks.json file
+                                        for stock in stockData['popular_stocks']: #iterate through each stock
+                                            for objectDescription in annotatedImage['responses'][0]['logoAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], stock['name'].lower()) > 0.75: #check if annotation is similar to stock name
+                                                    stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + imageURL #generate stock found message
+                                                    print(stockMessage)
+                                                    #send SMS with Twilio
+                                                    sms(stockMessage)
+                                                    print("\n")                                     
+                                except:
+                                    pass
+                                try:
+                                    with open ('cryptos.json') as cryptoJsonFile:
+                                        cryptoData = json.load(cryptoJsonFile) #get cryptodata from cryptos.json file
+                                        for crypto in cryptoData['cryptos']: #iterate through each cryto
+                                            for objectDescription in annotatedImage['responses'][0]['textAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], crypto['symbol'].lower() ) > 0.75 or similar(objectDescription['description'], crypto['name'].lower()) > 0.65 : #check if annotation is similar to crypto symbol or name
+                                                    cryptoMessage = "crypto found: " + crypto['name'] + " in Elon's tweet: " + imageURL #generate crypto found message
+                                                    print(cryptoMessage)
+                                                    #send SMS with Twilio
+                                                    sms(cryptoMessage)
+                                                    print("\n")
+                                    with open('stocks.json') as stocksJsonFile:
+                                        stockData = json.load(stocksJsonFile) #get stockData from stocks.json file
+                                        for stock in stockData['popular_stocks']: #iterate through each stock
+                                            for objectDescription in annotatedImage['responses'][0]['textAnnotations']: #iterate through each annotation in the image
+                                                if similar(objectDescription['description'], stock['name'].lower()) > 0.75: #check if annotation is similar to stock name
+                                                    stockMessage = "stock found: " + stock['name'] + " in Elon's tweet: " + imageURL #generate stock found message
+                                                    print(stockMessage)
+                                                    #send SMS with Twilio
+                                                    sms(stockMessage)
+                                                    print("\n")                                                
+                                except:
+                                    pass
+
                     except:
                         print("error")
-                    '''
 
             lastDate = datetime.strptime(tweets[0]['created_at'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
             print("Waiting 2 minutes")
