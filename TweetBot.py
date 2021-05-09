@@ -24,7 +24,7 @@ def auth():
 
 # funtion that returns witter timeline url 
 def create_url():
-    user_id = 1358539990670536705 # user_id of Elon's account: 44196397  ( user_id of test account @farzin03167666 : 1358539990670536705 )
+    user_id = 44196397 # user_id of Elon's account: 44196397  ( user_id of test account @farzin03167666 : 1358539990670536705 )
     return "https://api.twitter.com/2/users/{}/tweets".format(user_id)
 
 #returns tweet parameters for twitter api 
