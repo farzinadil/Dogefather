@@ -1,4 +1,4 @@
-# DogeCEO
+# Dogefather
 
 ## About
 This program checks for new tweets from Elon Musk and checks if the tweets contain references to popular stocks or cryptocurrencies. If the tweet contains text, it will scan the text for potential names or tickers of commonly traded stocks and popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use Google Vision AI to find determine if images contain references to stocks or cryptos. It can detect objects in images, logos, and text in images. If the program finds images or text referencing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API. The program checks for tweets every 2 minutes. 
