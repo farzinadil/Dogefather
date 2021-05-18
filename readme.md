@@ -13,7 +13,7 @@ This program checks for new tweets from Elon Musk and checks if the tweets conta
 
 ### Instructions
 1. Clone repository
-2. <code>cd DogeCEO</code>
+2. <code>cd Dogefather</code>
 3. <code>pip3 install -r requirements.txt</code>
 4. Create a .env file and add Twitter API consumer key, consumer secret key, and bearer token as shown in .env.example
 5. Add the Twilio account sid and Twilio auth token to the .env file as shown in the .env.example file
