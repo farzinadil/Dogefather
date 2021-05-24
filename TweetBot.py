@@ -48,11 +48,10 @@ def connect_to_endpoint(url, headers, params):
     response = requests.request("GET", url, headers=headers, params=params)
     print(response.status_code)
     if response.status_code != 200:
-        raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
-        )
+        while response.status_code != 200:
+            response = requests.request("GET", url, headers=headers, params=params)
+            print(response.status_code)
+            time.sleep(60)
     return response.json()
 
 # return similarity index of 2 strings
@@ -72,7 +71,7 @@ def sms(message):
         from_=twilio_phone_number,
         to=phone_number
     )
-
+    
 # use Google Vision AI to annotate image
 def imageRecognition(url):
     visionAI_request_body = {
@@ -233,7 +232,8 @@ def main():
                     except:
                         print("error")
 
-            last_date = datetime.strptime(tweets[0]['created_at'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
+            if (  datetime.strptime(tweets[0]['created_at'][:-1], '%Y-%m-%dT%H:%M:%S.%f') > last_date):
+                last_date = datetime.strptime(tweets[0]['created_at'][:-1], '%Y-%m-%dT%H:%M:%S.%f')
             print("Waiting 2 minutes")
             time.sleep(60)
             print("Waiting 60 seconds")
