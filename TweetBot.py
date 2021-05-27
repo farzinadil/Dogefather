@@ -211,15 +211,12 @@ def sms(message):
     client = Client(account_sid, auth_token)
     phone_number = os.getenv("PHONE_NUMBER")
     twilio_phone_number = os.getenv("TWILIO_PHONE_NUMBER")
-    '''
     client.messages.create(
         body=message,
         from_=twilio_phone_number,
         to=phone_number
     )
-    '''
-    print(message)
-
+    
 # get Google VisionAI API key 
 def vison_ai_api_key():
     return os.getenv("VISIONAI_API_KEY")
