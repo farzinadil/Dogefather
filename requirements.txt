@@ -1,6 +1,4 @@
 python-dotenv==0.15.0
 requests==2.25.1
 twilio==6.51.1
-urllib3==1.26.3
-virtualenv==20.4.2
 
