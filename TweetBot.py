@@ -16,39 +16,6 @@ def create_headers(bearer_token):
 def get_params():
     return {"tweet.fields": "created_at,attachments"}
 
-# defins rules for filtered stream
-# from Twitter sample code  
-def get_rules(headers, params):
-    response = requests.get(
-        "https://api.twitter.com/2/tweets/search/stream/rules", headers=headers, params=params
-    )
-    if response.status_code != 200:
-        raise Exception(
-            "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text)
-        )
-    print(json.dumps(response.json()))
-    return response.json()
-
-# delete rules for filtered stream
-# from Twitter sample code  
-def delete_all_rules(headers, rules):
-    if rules is None or "data" not in rules:
-        return None
-
-    ids = list(map(lambda rule: rule["id"], rules["data"]))
-    payload = {"delete": {"ids": ids}}
-    response = requests.post(
-        "https://api.twitter.com/2/tweets/search/stream/rules",
-        headers=headers,
-        json=payload
-    )
-    if response.status_code != 200:
-        raise Exception(
-            "Cannot delete rules (HTTP {}): {}".format(
-                response.status_code, response.text
-            )
-        )
-    print(json.dumps(response.json()))
 
 # set rules for filtered stream
 # from Twitter sample code  
@@ -259,8 +226,6 @@ def main():
     bearer_token = os.getenv("BEARER_TOKEN")
     headers = create_headers(bearer_token)
     params = get_params()
-    rules = get_rules(headers, params)
-    delete = delete_all_rules(headers, rules)
     set = set_rules(headers)
     while True:
         try:
