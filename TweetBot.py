@@ -83,7 +83,7 @@ def get_stream(headers, params, bearer_token):
                     request_tweet = requests.get(request_URL, headers={"Authorization": "Bearer {}".format(bearer_token)})
                     for media in request_tweet.json()['includes']['media']: #iterate through media array of tweet
                         image_URL = media['url']
-                        annotated_image = imageRecognition(image_URL) #get json responce from Google Vision AI
+                        annotated_image = image_annotation(image_URL) #get json responce from Google Vision AI
                         try:
                             with open ('public/json/cryptos.json') as crypto_json_file:
                                 crypto_data = json.load(crypto_json_file) #get crypto_data from cryptos.json file
@@ -190,7 +190,7 @@ def vison_ai_api_key():
     return os.getenv("VISIONAI_API_KEY")
 
 # use Google Vision AI to annotate image and return annotations json responce 
-def imageRecognition(url):
+def image_annotation(url):
     visionAI_request_body = {
         "requests": [
         {
