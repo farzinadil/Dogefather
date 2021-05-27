@@ -23,7 +23,7 @@ This program streams tweets from Elon Musk and checks if the tweets contain refe
 
 ## Examples
 ### Image Recognition
-<img src="public/img/doge-image.jpeg" width="600">
+<img src="public/img/doge-image.jpg" width="600">
 
 ### Find stock in tweet
 <img src="public/img/gamestop.png" width="600">
