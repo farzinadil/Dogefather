@@ -1,7 +1,7 @@
 # Dogefather
 
 ## About
-This program checks for new tweets from Elon Musk and checks if the tweets contain references to popular stocks or cryptocurrencies. If the tweet contains text, it will scan the text for potential names or tickers of commonly traded stocks and popular cryptocurrencies. If the tweet contains an image or multiple images, the program will use Google Vision AI to find determine if images contain references to stocks or cryptos. It can detect objects in images, logos, and text in images. If the program finds images or text referencing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API. The program checks for tweets every 2 minutes. 
+This program streams tweets from Elon Musk and checks if the tweets contain references to popular stocks or cryptocurrencies. If the tweet contains text, it will scan the text for potential names or tickers of commonly traded stocks and popular cryptocurrencies. If the tweet contains images, the program will use Google VisionAI to annotate the images to determine if images contain references to stocks or cryptos. It can detect objects in images, logos, and text in images. If the program finds images or text referencing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API. 
 
 ## Installation
 
@@ -38,4 +38,4 @@ This program checks for new tweets from Elon Musk and checks if the tweets conta
 stocks.json contains 100 most popular stocks and cryptos.json contains 5 popular cryptos. moreStocks.json contains all stocks and moreCryptos.json contains all cryptos. See https://cloud.google.com/vision/docs/setup for a quickstart of the Vision API.
 
 ## What's Next
-1. Using websocket for getting Tweets
+1. Streaming tweets from more accounts rather than just Elon Musk.
