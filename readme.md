@@ -1,5 +1,5 @@
 # Dogefather
-
+![GitHub last commit](https://img.shields.io/github/last-commit/farzinadil/Dogefather) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/farzinadil/Dogefather) ![GitHub issues](https://img.shields.io/github/issues-raw/farzinadil/Dogefather) ![GitHub Repo stars](https://img.shields.io/github/stars/farzinadil/Dogefather?style=plastic) ![GitHub forks](https://img.shields.io/github/forks/farzinadil/Dogefather?style=plastic)
 ## About
 This program streams tweets from Elon Musk and checks if the tweets contain references to popular stocks or cryptocurrencies. If the tweet contains text, it will scan the text for potential names or tickers of commonly traded stocks and popular cryptocurrencies. If the tweet contains images, the program will use Google VisionAI to annotate the images to determine if images contain references to stocks or cryptos. It can detect objects in images, logos, and text in images. If the program finds images or text referencing stocks or cryptocurrencies, it will send an SMS to the configured phone number using the Twilio API. 
 
