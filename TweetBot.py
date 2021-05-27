@@ -1,6 +1,7 @@
 import requests
 import os
 import json
+import time
 from difflib import SequenceMatcher
 from twilio.rest import Client
 from dotenv import load_dotenv
@@ -261,7 +262,12 @@ def main():
     rules = get_rules(headers, params)
     delete = delete_all_rules(headers, rules)
     set = set_rules(headers)
-    get_stream(headers, params, bearer_token)
+    while True:
+        try:
+            get_stream(headers, params, bearer_token)
+        except:
+            print("something went wrong")
+            time.sleep(60)
 
 
 if __name__ == "__main__":
