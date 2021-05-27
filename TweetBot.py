@@ -87,7 +87,7 @@ def get_stream(headers, params, bearer_token):
             tweet_content = tweet['text'].lower()
             split_tweet_content = tweet_content.split()
 
-            with open ('cryptos.json') as crypto_json_file:
+            with open ('public/json/cryptos.json') as crypto_json_file:
                         crypto_data = json.load(crypto_json_file) #get crypto_data from cryptos.json file
                         for crypto in crypto_data['cryptos']: #iterate through each cryto
                             for word in split_tweet_content: #iterate through each word in the tweet
@@ -98,7 +98,7 @@ def get_stream(headers, params, bearer_token):
                                     sms(crypto_message)
                                     print("\n")
 
-            with open('stocks.json') as stocks_json_file:
+            with open('public/json/stocks.json') as stocks_json_file:
                         stock_data = json.load(stocks_json_file) #get stock_data from stocks.json file
                         for stock in stock_data['popular_stocks']: #iterate through each stock
                             for word in split_tweet_content: #iterate through each word in the tweet
@@ -117,7 +117,7 @@ def get_stream(headers, params, bearer_token):
                         image_URL = media['url']
                         annotated_image = imageRecognition(image_URL) #get json responce from Google Vision AI
                         try:
-                            with open ('cryptos.json') as crypto_json_file:
+                            with open ('public/json/cryptos.json') as crypto_json_file:
                                 crypto_data = json.load(crypto_json_file) #get crypto_data from cryptos.json file
                                 for crypto in crypto_data['cryptos']: #iterate through each cryto
                                     for objectDescription in annotated_image['responses'][0]['labelAnnotations']: #iterate through each annotation in the image
@@ -127,7 +127,7 @@ def get_stream(headers, params, bearer_token):
                                             #send SMS with Twilio
                                             sms(crypto_message)
                                             print("\n")
-                            with open('stocks.json') as stocks_json_file:
+                            with open('public/json/stocks.json') as stocks_json_file:
                                 stock_data = json.load(stocks_json_file) #get stock_data from stocks.json file
                                 for stock in stock_data['popular_stocks']: #iterate through each stock
                                     for objectDescription in annotated_image['responses'][0]['labelAnnotations']: #iterate through each annotation in the image
@@ -140,7 +140,7 @@ def get_stream(headers, params, bearer_token):
                         except:
                             pass
                         try:
-                            with open ('cryptos.json') as crypto_json_file:
+                            with open ('public/json/cryptos.json') as crypto_json_file:
                                 crypto_data = json.load(crypto_json_file) #get crypto_data from cryptos.json file
                                 for crypto in crypto_data['cryptos']: #iterate through each cryto
                                     for objectDescription in annotated_image['responses'][0]['logoAnnotations']: #iterate through each annotation in the image
@@ -150,7 +150,7 @@ def get_stream(headers, params, bearer_token):
                                             #send SMS with Twilio
                                             sms(crypto_message)
                                             print("\n")
-                            with open('stocks.json') as stocks_json_file:
+                            with open('public/json/stocks.json') as stocks_json_file:
                                 stock_data = json.load(stocks_json_file) #get stock_data from stocks.json file
                                 for stock in stock_data['popular_stocks']: #iterate through each stock
                                     for objectDescription in annotated_image['responses'][0]['logoAnnotations']: #iterate through each annotation in the image
@@ -163,7 +163,7 @@ def get_stream(headers, params, bearer_token):
                         except:
                             pass
                         try:
-                            with open ('cryptos.json') as crypto_json_file:
+                            with open ('public/json/cryptos.json') as crypto_json_file:
                                 crypto_data = json.load(crypto_json_file) #get crypto_data from cryptos.json file
                                 for crypto in crypto_data['cryptos']: #iterate through each cryto
                                     for objectDescription in annotated_image['responses'][0]['textAnnotations']: #iterate through each annotation in the image
@@ -173,7 +173,7 @@ def get_stream(headers, params, bearer_token):
                                             #send SMS with Twilio
                                             sms(crypto_message)
                                             print("\n")
-                            with open('stocks.json') as stocks_json_file:
+                            with open('public/json/stocks.json') as stocks_json_file:
                                 stock_data = json.load(stocks_json_file) #get stock_data from stocks.json file
                                 for stock in stock_data['popular_stocks']: #iterate through each stock
                                     for objectDescription in annotated_image['responses'][0]['textAnnotations']: #iterate through each annotation in the image
