@@ -22,16 +22,16 @@ This program streams tweets from Elon Musk and checks if the tweets contain refe
 8. <code>python3 TweetBot.py</code>
 
 ## Examples
-### Image Recognition
+### Finding stock/crypto in an image
 <img src="public/img/doge-image.jpg" width="600">
 
-### Find stock in tweet
+### Finding stock in tweet
 <img src="public/img/gamestop.png" width="600">
 
-### Find crypto in tweet
+### Finding crypto in tweet
 <img src="public/img/dogecoin.png" width="600">
 
-### Send alerts 
+### Sending alerts 
 <img src="public/img/twilio-texts.PNG" width="600">
 
 ## Notes
